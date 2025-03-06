@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista de Contatos</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="container mt-4">
+        <h1 class="text-center">Lista de Contatos</h1>
+        
+        <a href="{% url 'criar_contato' %}" class="btn btn-success mb-3">Adicionar Contato</a>
+        <!-- Bloco de Mensagens -->
+        {% if messages %}
+            <div class="alert alert-dismissible fade show">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <!-- Fim do bloco -->
+        <!-- Inicio Pesquisa -->
+        <form method="GET" class="mb-3">
+            <input type="text" name="q" class="form-control" placeholder="Buscar por nome...">
+            <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+        </form>
+        <!-- Fim Pesquisa -->        
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contato in contatos %}
+                    <tr>
+                        <td>{{ contato.nome }}</td>
+                        <td>{{ contato.email }}</td>
+                        <td>{{ contato.telefone }}</td>
+                        <td>
+                            <a href="{% url 'editar_contato' contato.id %}" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="{% url 'deletar_contato' contato.id %}" class="btn btn-danger btn-sm">Deletar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
