@@ -1,0 +1,25 @@
+# 😎 Ignorar arquivos do Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# 😎 Ignorar arquivos do Virtual Environment
+venv/
+env/
+*.env
+
+# 😎 Ignorar configurações do IDE (VS Code, PyCharm, etc.)
+.vscode/
+.idea/
+
+# 😎 Ignorar arquivos de logs e cache
+*.log
+*.pot
+*.pyc
+.DS_Store
+
+# 😎 Ignorar arquivos de banco de dados SQLite (se não quiser subir)
+db.sqlite3
+
+# 😎 Ignorar arquivos de migração gerados automaticamente (se for necessário)
+migrations/
